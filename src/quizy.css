@@ -1,0 +1,82 @@
+.body{
+  margin: 0 auto;
+  max-width: 650px;
+}
+
+.subtitle{
+  font-size:25px;
+  padding:10px;
+}
+
+.question {
+  font-size: 17px;
+  position: relative;
+}
+
+.question::after{
+  position: absolute;
+  content:"";
+  display: block;
+  width: 125px;
+  border-bottom: solid 2px #00AB36;
+
+}
+
+
+.option {
+  font-size: 20px;
+  border: 1px solid #ebebeb;
+  height: 40px;
+  margin: 10px;
+  padding-left: 5px;
+  padding-top: 5px;
+  box-shadow: 0 3px 3px -3px rgb(0,0,0, 13%);
+  font-family:  "Hiragino Kaku Gothic ProN", -apple-system, BlinkMacSystemFont, "Hiragino Sans", "游ゴシック Medium", meiryo, sans-serif;
+
+}
+
+.img {
+text-align: center;
+}
+
+ul{
+  list-style: none;
+  padding-inline-start: 0px;
+  pointer-events: auto;
+}
+
+.correctAnswer {
+  background-color:#287DFF;
+  color: white;
+
+}
+
+.area {
+  background-color: #F5F5F5;
+  padding: 1px 20px;
+  display:none;
+}
+
+.titleLine::after{
+  content:"";
+  display: block;
+  width: 50px;
+  border-bottom: solid 3px #287DFF;
+}
+
+.incorrectAnswer {
+  background-color:red;
+  color:white
+}
+
+
+.titleLine2::after{
+  content:"";
+  display: block;
+  width: 50px;
+  border-bottom: solid 3px red;
+}
+
+.click_invalidation{
+  pointer-events: none;
+}
