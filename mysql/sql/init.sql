@@ -5,39 +5,33 @@ USE posse;
 SET CHARACTER_SET_CLIENT = utf8;
 SET CHARACTER_SET_CONNECTION = utf8;
 
-DROP TABLE IF EXISTS big_questions;
-CREATE TABLE big_questions (
+DROP TABLE IF EXISTS study_date;
+CREATE TABLE study_date (
   id INT AUTO_INCREMENT NOT NULL PRIMARY KEY,
-  name VARCHAR(255) NOT NULL,
-  created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
-  updated_at DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+  hour INT NOT NULL,
+  date ,
+  content_name VARCHAR(255) NOT NULL ,
+  language_name VARCHAR(255) NOT NULL,
 );
 
-INSERT INTO big_questions SET name='東京の難読地名クイズ';
-INSERT INTO big_questions SET name='広島の難読地名クイズ';
 
-DROP TABLE IF EXISTS questions;
-CREATE TABLE questions (
+DROP TABLE IF EXISTS contents;
+CREATE TABLE contents (
   id INT AUTO_INCREMENT NOT NULL PRIMARY KEY,
-  big_question_id INT NOT NULL,
-  image VARCHAR(255) NOT NULL,
-  created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
-  updated_at DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+  content_name VARCHAR(255) NOT NULL,
+);
+
+
+DROP TABLE IF EXISTS languages;
+CREATE TABLE languages (
+  id INT AUTO_INCREMENT NOT NULL PRIMARY KEY,
+  language_name VARCHAR(255) NOT NULL,
 );
 
 INSERT INTO questions SET big_question_id=1, image='takanawa.png';
 INSERT INTO questions SET big_question_id=1, image='kameido.png';
 INSERT INTO questions SET big_question_id=2, image='mukainada.png';
 
-DROP TABLE IF EXISTS choices;
-CREATE TABLE choices (
-  id INT AUTO_INCREMENT NOT NULL PRIMARY KEY,
-  question_id INT NOT NULL,
-  name VARCHAR(255) NOT NULL,
-  valid TINYINT(1) NOT NULL DEFAULT '0',
-  created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
-  updated_at DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
-);
 
 INSERT INTO choices
   (question_id, name, valid) 
