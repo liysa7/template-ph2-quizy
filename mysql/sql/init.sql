@@ -9,7 +9,7 @@ DROP TABLE IF EXISTS study_date;
 CREATE TABLE study_date (
   id INT AUTO_INCREMENT NOT NULL PRIMARY KEY,
   hour INT NOT NULL,
-  date ,
+  date DATE NOT NULL,
   content_name VARCHAR(255) NOT NULL ,
   language_name VARCHAR(255) NOT NULL,
 );
@@ -21,6 +21,10 @@ CREATE TABLE contents (
   content_name VARCHAR(255) NOT NULL,
 );
 
+INSERT INTO contents SET content_name='ドットインストール';
+INSERT INTO contents SET content_name='N予備校';
+INSERT INTO contents SET content_name='POSSE課題';
+
 
 DROP TABLE IF EXISTS languages;
 CREATE TABLE languages (
@@ -28,9 +32,14 @@ CREATE TABLE languages (
   language_name VARCHAR(255) NOT NULL,
 );
 
-INSERT INTO questions SET big_question_id=1, image='takanawa.png';
-INSERT INTO questions SET big_question_id=1, image='kameido.png';
-INSERT INTO questions SET big_question_id=2, image='mukainada.png';
+INSERT INTO languages SET language_name='HTML';
+INSERT INTO languages SET language_name='CSS';
+INSERT INTO languages SET language_name='JavaScript';
+INSERT INTO languages SET language_name='PHP';
+INSERT INTO languages SET language_name='Laravel';
+INSERT INTO languages SET language_name='SQL';
+INSERT INTO languages SET language_name='SHELL';
+INSERT INTO languages SET language_name='情報システム基礎知識(その他)';
 
 
 INSERT INTO choices
