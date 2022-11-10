@@ -5,51 +5,58 @@ USE posse;
 SET CHARACTER_SET_CLIENT = utf8;
 SET CHARACTER_SET_CONNECTION = utf8;
 
-DROP TABLE IF EXISTS big_questions;
-CREATE TABLE big_questions (
+DROP TABLE IF EXISTS study_date;
+CREATE TABLE study_date (
   id INT AUTO_INCREMENT NOT NULL PRIMARY KEY,
-  name VARCHAR(255) NOT NULL,
-  created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
-  updated_at DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+  hour INT NOT NULL,
+  date DATE NOT NULL,
+  content_name VARCHAR(255) NOT NULL ,
+  language_name VARCHAR(255) NOT NULL
 );
 
-INSERT INTO big_questions SET name='東京の難読地名クイズ';
-INSERT INTO big_questions SET name='広島の難読地名クイズ';
 
-DROP TABLE IF EXISTS questions;
-CREATE TABLE questions (
-  id INT AUTO_INCREMENT NOT NULL PRIMARY KEY,
-  big_question_id INT NOT NULL,
-  image VARCHAR(255) NOT NULL,
-  created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
-  updated_at DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
-);
-
-INSERT INTO questions SET big_question_id=1, image='takanawa.png';
-INSERT INTO questions SET big_question_id=1, image='kameido.png';
-INSERT INTO questions SET big_question_id=2, image='mukainada.png';
-
-DROP TABLE IF EXISTS choices;
-CREATE TABLE choices (
-  id INT AUTO_INCREMENT NOT NULL PRIMARY KEY,
-  question_id INT NOT NULL,
-  name VARCHAR(255) NOT NULL,
-  valid TINYINT(1) NOT NULL DEFAULT '0',
-  created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
-  updated_at DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
-);
-
-INSERT INTO choices
-  (question_id, name, valid) 
+INSERT INTO study_date
+  (hour, date, content_name, language_name)
 VALUES
-  (1, 'たかなわ', 1),
-  (1, 'たかわ', 0),
-  (1, 'こうわ', 0),
-  (2, 'かめと', 0),
-  (2, 'かめど', 0),
-  (2, 'かめいど', 1),
-  (3, 'むこうひら', 0),
-  (3, 'むきひら', 0),
-  (3, 'むかいなだ', 1);
+  (3, '2022-10-25', 'ドットインストール', 'PHP'),
+  (7, '2022-11-25', 'N予備校', 'JavaScript'),
+  (1, '2022-10-02', 'POSSE課題', 'SQL'),
+  (9, '2022-11-05', 'N予備校', 'SQL'),
+  (4, '2022-11-01', 'ドットインストール', 'PHP'),
+  (6, '2022-10-06', 'POSSE課題', 'SHELL'),
+  (10, '2022-10-25', 'N予備校', 'PHP'),
+  (2, '2022-9-21', 'POSSE課題', 'CSS'),
+  (4, '2022-11-03', 'ドットインストール', 'HTML'),
+  (8, '2022-11-09', 'N予備校', 'PHP'),
+  (7, '2022-10-30', 'N予備校', '情報システム基礎知識(その他)'),
+  (7, '2022-11-10', 'N予備校', '情報システム基礎知識(その他)');
 
-  
+
+DROP TABLE IF EXISTS contents;
+CREATE TABLE contents (
+  id INT AUTO_INCREMENT NOT NULL PRIMARY KEY,
+  content_name VARCHAR(255) NOT NULL
+);
+
+INSERT INTO contents SET content_name='ドットインストール';
+INSERT INTO contents SET content_name='N予備校';
+INSERT INTO contents SET content_name='POSSE課題';
+
+
+DROP TABLE IF EXISTS languages;
+CREATE TABLE languages (
+  id INT AUTO_INCREMENT NOT NULL PRIMARY KEY,
+  language_name VARCHAR(255) NOT NULL
+);
+
+INSERT INTO languages SET language_name='HTML';
+INSERT INTO languages SET language_name='CSS';
+INSERT INTO languages SET language_name='JavaScript';
+INSERT INTO languages SET language_name='PHP';
+INSERT INTO languages SET language_name='Laravel';
+INSERT INTO languages SET language_name='SQL';
+INSERT INTO languages SET language_name='SHELL';
+INSERT INTO languages SET language_name='情報システム基礎知識(その他)';
+
+
+

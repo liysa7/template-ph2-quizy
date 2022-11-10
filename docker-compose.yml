@@ -23,6 +23,9 @@ services:
     environment:
       MYSQL_DATABASE: posse
       MYSQL_ROOT_PASSWORD: password
+      MYSQL_USER: posse_user
+    ports:
+      - "3306:3306"
     volumes:
       - ./mysql/sql:/docker-entrypoint-initdb.d
       - ./mysql/data:/var/lib/mysql
