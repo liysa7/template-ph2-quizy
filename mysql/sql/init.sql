@@ -29,7 +29,7 @@ VALUES
   (4, '2022-11-03', 'ドットインストール', 'HTML'),
   (8, '2022-11-09', 'N予備校', 'PHP'),
   (7, '2022-10-30', 'N予備校', '情報システム基礎知識(その他)'),
-  (7, '2022-11-12', 'N予備校', '情報システム基礎知識(その他)');
+  (7, '2022-11-14', 'N予備校', '情報システム基礎知識(その他)');
 
 
 DROP TABLE IF EXISTS contents;
@@ -59,4 +59,24 @@ INSERT INTO languages SET language_name='SHELL';
 INSERT INTO languages SET language_name='情報システム基礎知識(その他)';
 
 
+DROP TABLE IF EXISTS mst_digit;
+CREATE TABLE mst_digit (
+  digit SMALLINT(4)
+);
+INSERT INTO mst_digit (digit)
+VALUES
+(0),
+(1),
+(2),
+(3),
+(4),
+(5),
+(6),
+(7),
+(8),
+(9);
+
+CREATE VIEW vw_sequence99 AS
+SELECT (d1.digit + (d2.digit * 10)) AS Number
+FROM (mst_digit d1 join mst_digit d2);
 

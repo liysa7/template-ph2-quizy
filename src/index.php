@@ -1,5 +1,22 @@
 <?php
+
+use LDAP\Result;
+
 require('connectdb.php');
+
+$stmt = $pdo->prepare("select COALESCE(sum(hour),0) from study_date");
+$stmt->execute();
+$SUM = $stmt->fetch(PDO::FETCH_COLUMN);
+
+$stmt = $pdo->prepare("select COALESCE(sum(hour),0) from study_date where date = date(now());");
+$stmt->execute();
+$TODAY = $stmt->fetch(PDO::FETCH_COLUMN);
+
+$stmt = $pdo->prepare("select COALESCE(sum(hour),0) from study_date WHERE date >= '2022-10-01' AND date <= '2022-10-30';");
+$stmt->execute();
+$MONTH = $stmt->fetch(PDO::FETCH_COLUMN);
+
+
 ?>
 
 <!DOCTYPE html>
@@ -35,16 +52,18 @@ require('connectdb.php');
       <div class="topBox">
         <div class="leftbox">
           <div class="time">
-            <div class="timecard today"><span class="unit">Today</span> <br><span class="number"><? ?>3</span> <br> <span
+            <div class="timecard today"><span class="unit">Today</span> <br><span class="number"><? echo $TODAY ?></span> <br> <span
                 class="hour">hour</span></div>
-            <div class="timecard month"><span class="unit">Month</span> <br><span class="number">120</span> <br><span
+            <div class="timecard month"><span class="unit">Month</span> <br><span class="number"><? echo $MONTH ?>
+            </span> <br><span
                 class="hour">hour</span></div>
-            <div class="timecard total"><span class="unit">Total</span> <br><span class="number">1348</span> <br><span
+            <div class="timecard total"><span class="unit">Total</span> <br><span class="number"><? echo $SUM ?></span> <br><span
                 class="hour">hour</span> </div>
           </div>
           <div class="BarGraphBox">
             <div class="chart_div" id="chart_div" style="width:100%"></div>
             <div class="chart_div_sp" id="chart_div_sp" style="width:100%"></div>
+            <canvas id="column" class="column"></canvas>
           </div>
         </div>
         <div class="rightbox">
@@ -197,5 +216,15 @@ require('connectdb.php');
   <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
   <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
   <script type="text/javascript" src="posseapp.js"></script>
+
+  <?php 
+require('graphs.php');
+?>
+
 </body>
+
+
+
 </html>
+
+
